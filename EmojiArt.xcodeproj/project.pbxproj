@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		17D771C3189C15965E5C88AB /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 17D77055916E9996021AFB23 /* .gitignore */; };
+		17D77826179944F17649DB02 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 17D7771F6A170C53729E8A60 /* .gitignore */; };
 		EC6BD6D324579CB100DC5EE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6BD6D224579CB100DC5EE0 /* AppDelegate.swift */; };
 		EC6BD6D524579CB100DC5EE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6BD6D424579CB100DC5EE0 /* SceneDelegate.swift */; };
 		EC6BD6D724579CB100DC5EE0 /* EmojiArtDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6BD6D624579CB100DC5EE0 /* EmojiArtDocumentView.swift */; };
@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		17D77055916E9996021AFB23 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
+		17D7771F6A170C53729E8A60 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
 		EC6BD6CF24579CB100DC5EE0 /* EmojiArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC6BD6D224579CB100DC5EE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC6BD6D424579CB100DC5EE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +54,7 @@
 			children = (
 				EC6BD6D124579CB100DC5EE0 /* EmojiArt */,
 				EC6BD6D024579CB100DC5EE0 /* Products */,
+				17D7771F6A170C53729E8A60 /* .gitignore */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,7 +81,6 @@
 				EC6BD6DD24579CB100DC5EE0 /* LaunchScreen.storyboard */,
 				EC6BD6E024579CB100DC5EE0 /* Info.plist */,
 				EC6BD6DA24579CB100DC5EE0 /* Preview Content */,
-				17D77055916E9996021AFB23 /* .gitignore */,
 			);
 			path = EmojiArt;
 			sourceTree = "<group>";
@@ -154,7 +154,7 @@
 				EC6BD6DF24579CB100DC5EE0 /* LaunchScreen.storyboard in Resources */,
 				EC6BD6DC24579CB100DC5EE0 /* Preview Assets.xcassets in Resources */,
 				EC6BD6D924579CB100DC5EE0 /* Assets.xcassets in Resources */,
-				17D771C3189C15965E5C88AB /* .gitignore in Resources */,
+				17D77826179944F17649DB02 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

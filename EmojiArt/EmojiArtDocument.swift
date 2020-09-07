@@ -34,22 +34,32 @@ class EmojiArtDocument: ObservableObject
     var emojis: [EmojiArt.Emoji] { emojiArt.emojis }
     
     // MARK: - Intent(s)
+
+    func removeEmoji(_ emoji: EmojiArt.Emoji) {
+        if let i = self.emojis.firstIndex(matching: emoji) {
+            emojiArt.emojis.remove(at: i)
+        }
+    }
     
     func addEmoji(_ emoji: String, at location: CGPoint, size: CGFloat) {
         emojiArt.addEmoji(emoji, x: Int(location.x), y: Int(location.y), size: Int(size))
     }
     
-    func moveEmoji(_ emoji: EmojiArt.Emoji, by offset: CGSize) {
+    func moveEmoji(_ emoji: EmojiArt.Emoji, by offset: CGSize) -> EmojiArt.Emoji? {
         if let index = emojiArt.emojis.firstIndex(matching: emoji) {
             emojiArt.emojis[index].x += Int(offset.width)
             emojiArt.emojis[index].y += Int(offset.height)
+            return emojiArt.emojis[index]
         }
+        return nil
     }
     
-    func scaleEmoji(_ emoji: EmojiArt.Emoji, by scale: CGFloat) {
+    func scaleEmoji(_ emoji: EmojiArt.Emoji, by scale: CGFloat) -> EmojiArt.Emoji? {
         if let index = emojiArt.emojis.firstIndex(matching: emoji) {
             emojiArt.emojis[index].size = Int((CGFloat(emojiArt.emojis[index].size) * scale).rounded(.toNearestOrEven))
+            return emojiArt.emojis[index]
         }
+        return nil
     }
 
     func setBackgroundURL(_ url: URL?) {

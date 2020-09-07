@@ -31,7 +31,12 @@ struct EmojiArtDocumentView: View {
                         OptionalImage(uiImage: self.document.backgroundImage)
                             .scaleEffect(self.zoomScale)
                             .offset(self.panOffset)
-                    ).gesture(self.doubleTapToZoom(in: geometry.size))
+                    )
+                            .gesture(
+                                    self.doubleTapToZoom(in: geometry.size)
+                                            .simultaneously(with: self.singleTapOnDocumentGesture())
+                                            .simultaneously(with: self.panGesture())
+                            )
 
                     ForEach(self.document.emojis) { emoji in
                         ZStack {
@@ -51,32 +56,29 @@ struct EmojiArtDocumentView: View {
                                                     emoji.fontSize * self.emojiZoomScale :
                                                     emoji.fontSize * self.zoomScale
                                     )
-                                    .onTapGesture {
-                                        self.selection.toggleMatching(element: emoji)
-                                    }
                         }
                                 .position(self.position(for: emoji, in: geometry.size))
                                 .offset(self.selection.contains(emoji) ? self.gestureEmojiOffset : .zero)
                                 .gesture(self.dragGesture())
+                                .gesture(
+                                        self.tripleTapGesture(for: emoji)
+                                                .simultaneously(with: self.singleTapOnEmojiGesture(for: emoji))
+                                )
                     }
                 }
-                .clipped()
-                .gesture(self.panGesture())
-                .gesture(self.zoomGesture())
-                .edgesIgnoringSafeArea([.horizontal, .bottom])
-                .onDrop(of: ["public.image","public.text"], isTargeted: nil) { providers, location in
-                    // SwiftUI bug (as of 13.4)? the location is supposed to be in our coordinate system
-                    // however, the y coordinate appears to be in the global coordinate system
-                    var location = CGPoint(x: location.x, y: geometry.convert(location, from: .global).y)
-                    location = CGPoint(x: location.x - geometry.size.width/2, y: location.y - geometry.size.height/2)
-                    location = CGPoint(x: location.x - self.panOffset.width, y: location.y - self.panOffset.height)
-                    location = CGPoint(x: location.x / self.zoomScale, y: location.y / self.zoomScale)
-                    return self.drop(providers: providers, at: location)
-                }
+                        .clipped()
+                        .gesture(self.zoomGesture())
+                        .edgesIgnoringSafeArea([.horizontal, .bottom])
+                        .onDrop(of: ["public.image","public.text"], isTargeted: nil) { providers, location in
+                            // SwiftUI bug (as of 13.4)? the location is supposed to be in our coordinate system
+                            // however, the y coordinate appears to be in the global coordinate system
+                            var location = CGPoint(x: location.x, y: geometry.convert(location, from: .global).y)
+                            location = CGPoint(x: location.x - geometry.size.width/2, y: location.y - geometry.size.height/2)
+                            location = CGPoint(x: location.x - self.panOffset.width, y: location.y - self.panOffset.height)
+                            location = CGPoint(x: location.x / self.zoomScale, y: location.y / self.zoomScale)
+                            return self.drop(providers: providers, at: location)
+                        }
             }
-        }
-        .onTapGesture {
-            self.selection.removeAll()
         }
     }
 
@@ -109,9 +111,11 @@ struct EmojiArtDocumentView: View {
                 .onEnded { finalGestureScale in
                     if !self.selection.isEmpty {
                         for emoji in self.selection {
-                            self.document.scaleEmoji(emoji, by: finalGestureScale)
+                            self.selection.remove(emoji)
+                            self.selection.insert(
+                                    self.document.scaleEmoji(emoji, by: finalGestureScale)!
+                            )
                         }
-                        self.selection.removeAll()
                     } else {
                         self.steadyStateZoomScale *= finalGestureScale
                     }
@@ -142,9 +146,35 @@ struct EmojiArtDocumentView: View {
                 }
                 .onEnded { finalGestureValue in
                     for emojiInSelection in self.selection {
-                        self.document.moveEmoji(emojiInSelection, by: finalGestureValue.translation / self.zoomScale)
+                        self.selection.remove(emojiInSelection)
+                        self.selection.insert(
+                                self.document.moveEmoji(
+                                        emojiInSelection, by: finalGestureValue.translation / self.zoomScale
+                                )!
+                        )
                     }
-                    self.selection.removeAll()
+                    
+        }
+    }
+
+    private func singleTapOnEmojiGesture(for emoji: EmojiArt.Emoji) -> some Gesture {
+        TapGesture(count: 1)
+        .onEnded {
+            self.selection.toggleMatching(element: emoji)
+        }
+    }
+
+    private func singleTapOnDocumentGesture() -> some Gesture {
+        TapGesture(count: 1)
+        .onEnded {
+            self.selection.removeAll()
+        }
+    }
+
+    private func tripleTapGesture(for emoji: EmojiArt.Emoji) -> some Gesture {
+        TapGesture(count: 3)
+                .onEnded {
+                    self.document.removeEmoji(emoji)
                 }
     }
 
