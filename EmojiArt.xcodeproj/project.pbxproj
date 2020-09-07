@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17D77179C7D510DC5C45849A /* readme.md in Sources */ = {isa = PBXBuildFile; fileRef = 17D77BEFDFC23F4A4C7E4994 /* readme.md */; };
 		17D77826179944F17649DB02 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 17D7771F6A170C53729E8A60 /* .gitignore */; };
 		EC6BD6D324579CB100DC5EE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6BD6D224579CB100DC5EE0 /* AppDelegate.swift */; };
 		EC6BD6D524579CB100DC5EE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6BD6D424579CB100DC5EE0 /* SceneDelegate.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		17D7771F6A170C53729E8A60 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
+		17D77BEFDFC23F4A4C7E4994 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		EC6BD6CF24579CB100DC5EE0 /* EmojiArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC6BD6D224579CB100DC5EE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC6BD6D424579CB100DC5EE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 				EC6BD6D124579CB100DC5EE0 /* EmojiArt */,
 				EC6BD6D024579CB100DC5EE0 /* Products */,
 				17D7771F6A170C53729E8A60 /* .gitignore */,
+				17D77BEFDFC23F4A4C7E4994 /* readme.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -173,6 +176,7 @@
 				EC6BD6F3245A48D100DC5EE0 /* OptionalImage.swift in Sources */,
 				EC6BD6F5245A48D100DC5EE0 /* AnimatableSystemFontModifier.swift in Sources */,
 				EC6BD6E724579CE000DC5EE0 /* EmojiArtDocument.swift in Sources */,
+				17D77179C7D510DC5C45849A /* readme.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
