@@ -59,6 +59,7 @@ struct EmojiArtDocumentView: View {
                         }
                                 .position(self.position(for: emoji, in: geometry.size))
                                 .offset(self.selection.contains(emoji) ? self.gestureEmojiOffset : .zero)
+//                                .transition(AnyTransition)
                                 .gesture(self.dragGesture())
                                 .gesture(
                                         self.tripleTapGesture(for: emoji)
@@ -175,6 +176,9 @@ struct EmojiArtDocumentView: View {
         TapGesture(count: 3)
                 .onEnded {
                     self.document.removeEmoji(emoji)
+                    if self.selection.contains(emoji) {
+                        self.selection.remove(emoji)
+                    }
                 }
     }
 
